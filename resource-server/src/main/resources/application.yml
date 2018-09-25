@@ -1,0 +1,7 @@
+server:
+  servlet:
+    contextPath: /resource1
+
+configs:
+  resourceId: resource1
+  signingKey: ass-oauth2
