@@ -17,4 +17,4 @@ CREATE TABLE usuario(
 		REFERENCES perfil(id)
 );
 
-INSERT INTO usuario(nome, login, senha, perfil_id) VALUES('Administrador', 'Administrador', '123', 1);
+INSERT INTO usuario(nome, login, senha, perfil_id) VALUES('Administrador', 'Administrador', '$2a$10$QAsmswjBAxAzPteYv.Qq4uVL0jFienzrbTfGC4E4tIrEId1GUwBPq', 1);
