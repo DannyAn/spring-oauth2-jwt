@@ -1,9 +1,9 @@
 import { Injectable, Injector } from '@angular/core';
 import { HttpInterceptor, HttpHeaders } from '@angular/common/http';
-import { AuthService } from './auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
-export class TokenInterceptorService implements HttpInterceptor {
+export class TokenInterceptor implements HttpInterceptor {
 
   constructor(private injector: Injector) { }
 
@@ -13,7 +13,7 @@ export class TokenInterceptorService implements HttpInterceptor {
 
     let tokenizedReq = req;
 
-    if (authService.loggedIn()) {
+    if (authService.loggedIn() && authService.getRefreshTokenProgress() === false) {
       let header = new HttpHeaders();
       header = header.append('Authorization', `Bearer ${authService.getAccessToken()}`);
       tokenizedReq = req.clone({headers: header});

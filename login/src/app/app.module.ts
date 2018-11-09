@@ -13,7 +13,8 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
 import { EventService } from './services/event.service';
 import { AuthGuard } from './auth.guard';
-import { TokenInterceptorService } from './services/token-interceptor.service';
+import { RefreshTokenInterceptor } from './interceptors/refresh-token.interceptor';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 
 @NgModule({
@@ -36,7 +37,12 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptorService,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RefreshTokenInterceptor,
       multi: true
     }
   ],
